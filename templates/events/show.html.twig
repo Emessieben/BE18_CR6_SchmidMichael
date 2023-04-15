@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events
+{% endblock %}
+
+{% block body %}
+	<div class='container'>
+
+		<div class='card mx-auto p-3 m-5' style='width: 50rem;'>
+			<div class='card-body row'>
+				<img src='{{ event.image }}' class='col-4 detail_img align-self-center' alt='{{ event.name }}'>
+				<div class='col-8'>
+					<h4 class='card-title'>{{ event.name }}</h4>
+					<p class='card-text'>{{ event.description }}</p>
+					<ul class='list-group list-group-flush'>
+						<li class='list-group-item'>{{ event.date|date("m/d/Y H:i") }}</li>
+						<li class='list-group-item'>{{ event.capacity }}
+							Plätze</li>
+						<li class='list-group-item'>{{ event.type }}</li>
+						<li class='list-group-item'>
+							<i class="bi bi-geo-alt-fill"></i>
+							{{ event.address }}</li>
+						<li class='list-group-item'>
+							<i class="bi bi-telephone-fill"></i>
+							{{ event.contactPhoneNumber }}</li>
+						<li class='list-group-item'>
+							<i class="bi bi-envelope-fill"></i>
+							{{ event.contactEmail }}</li>
+						<li class='list-group-item'>
+							<a class="text-decoration-none btn btn-outline-dark btn-sm" href="{{ event.url }}">Go to Homepage</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class='card-body mx-auto'>
+				<a class="btn btn-warning" href="{{ path('app_events_edit', {'id': event.id}) }}">Edit</a>
+				{{ include('events/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
